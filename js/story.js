@@ -104,6 +104,8 @@
     }
   }
 
+  var adsterraSmartlink = 'https://www.profitableratecpmnetwork.com/nfcs8w2e?key=4e6da3fd855b201fe461162e58bdf42a';
+
   function handleUnlock() {
     // Al ser un enlace HTML nativo (<a href="..." target="_blank">), el navegador
     // abre el Smartlink de Adsterra de forma 100% nativa y sin bloqueos.
@@ -113,6 +115,9 @@
 
   var unlockBtn = document.getElementById('unlock-button');
   if (unlockBtn) {
+    if (!unlockBtn.getAttribute('href') || unlockBtn.getAttribute('href') === '#') {
+      unlockBtn.setAttribute('href', adsterraSmartlink);
+    }
     unlockBtn.addEventListener('click', handleUnlock);
   }
 
