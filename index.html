@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- ← Cambia el título y la descripción por los reales de tu sitio -->
+  <title>Relatos de la vida — Portal de Historias</title>
+  <meta name="description" content="Descubre las historias más fascinantes del momento. Misterio, reflexión y curiosidades en un formato diseñado para leer en tu móvil.">
+
+  <!-- Estilos -->
+  <link rel="stylesheet" href="css/styles.css">
+
+  <!-- Fuentes (Google Fonts) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Serif+Pro:ital,wght@0,400;0,600;0,700;1,400&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="app-shell">
+
+    <!-- ================================================================
+         HEADER FIJO
+         El header es idéntico en todas las páginas del sitio.
+         ================================================================ -->
+    <header class="top-header">
+      <div class="header-inner">
+        <div class="header-brand">
+          <!-- ← Cambia "Relatos de la vida" por el nombre real de tu sitio -->
+          <h1 class="site-name"><a href="index.html">Relatos de la vida</a></h1>
+        </div>
+        <button id="menu-toggle" class="menu-toggle" type="button"
+                aria-controls="main-menu" aria-expanded="false">
+          <!-- Icono hamburguesa (SVG inline — sin dependencias externas) -->
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true">
+            <line x1="4" x2="20" y1="6" y2="6"/>
+            <line x1="4" x2="20" y1="12" y2="12"/>
+            <line x1="4" x2="20" y1="18" y2="18"/>
+          </svg>
+          <span class="sr-only">Abrir menú</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- ================================================================
+         MENÚ DESPLEGABLE
+         En index.html usa <button> porque la navegación es interna (JS).
+         En las páginas de historias usa <a> porque son enlaces reales.
+         ================================================================ -->
+    <nav id="main-menu" class="nav-panel" aria-label="Navegación principal">
+      <button type="button" data-action="home">Inicio</button>
+      <button type="button" data-action="stories">Historias</button>
+      <button type="button" data-action="contact">Contacto</button>
+    </nav>
+
+    <!-- ================================================================
+         CONTENIDO PRINCIPAL
+         ================================================================ -->
+    <main>
+
+      <!-- ══════════════════════════════════════════════════════════════
+           VISTA PRINCIPAL (HOME)
+           Esta sección contiene: Hero + Grid + Suscripción
+           ══════════════════════════════════════════════════════════════ -->
+      <section id="home-view" class="view is-active" aria-label="Vista de inicio">
+
+        <!-- ── HERO — Carrusel Automático de Historias ────────────────────────────── -->
+        <section id="hero-section" class="hero">
+          <div class="hero-content">
+            <span id="hero-category" class="category-chip">Misterio</span>
+
+            <div class="hero-copy">
+              <h2 id="hero-title" class="hero-title">El taxista se negó a llevarme y entonces descubrí por qué...</h2>
+              <p id="hero-excerpt" class="hero-excerpt">Una noche, una dirección y un silencio que parecía saber mucho más de lo que decía.</p>
+
+              <a id="hero-link" href="historia-taxista.html" class="outline-button">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M5 12h14"/><path d="m12 5 7 7-7 7"/>
+                </svg>
+                <span>Leer historia completa</span>
+              </a>
+            </div>
+          </div>
+          <div id="hero-dots" class="hero-dots"></div>
+        </section>
+
+        <!-- ── GRID DE HISTORIAS ─────────────────────────────────────── -->
+        <section id="stories-section" class="content-width section-spacing">
+          <div class="section-heading">
+            <h2>Últimas historias</h2>
+          </div>
+
+          <!-- Filtros por categoría -->
+          <div class="filter-row" aria-label="Filtrar historias">
+            <button class="filter-button is-selected" type="button" data-filter="all">Todas</button>
+            <button class="filter-button" type="button" data-filter="Misterio">Misterio</button>
+            <button class="filter-button" type="button" data-filter="Reflexión">Reflexión</button>
+            <button class="filter-button" type="button" data-filter="Curiosidades">Curiosidades</button>
+          </div>
+
+          <!-- ──────────────────────────────────────────────────────────
+               TARJETAS DE HISTORIAS
+
+               ★ CÓMO AÑADIR UNA NUEVA HISTORIA AL GRID ★
+
+               Copia este bloque y pégalo dentro de #story-grid:
+
+               <a class="story-card" href="historia-nueva.html" data-category="Misterio" data-image="images/historia-nueva.jpg" data-excerpt="Extracto de la historia...">
+                 <img src="images/historia-nueva.jpg" alt="Título de la nueva historia" class="thumbnail">
+                 <span class="story-meta">Misterio</span>
+                 <h3>Título de la nueva historia</h3>
+                 <p>Extracto breve que engancha al lector...</p>
+               </a>
+               ────────────────────────────────────────────────────────── -->
+          <div id="story-grid" class="story-grid">
+
+            <!-- Tarjeta 1 — Misterio (enlazada a historia real) -->
+            <a class="story-card" href="historia-taxista.html" data-category="Misterio" data-image="images/taxista.jpg" data-excerpt="Una noche, una dirección y un silencio que parecía saber mucho más de lo que decía.">
+              <img src="images/taxista.jpg" alt="El taxista se negó a llevarme" class="thumbnail">
+              <span class="story-meta">Misterio</span>
+              <h3>El taxista se negó a llevarme</h3>
+              <p>La última llamada cambió la historia...</p>
+            </a>
+             
+            <a class="story-card" href="historia-turno-noche.html" data-category="Reflexión" data-image="images/cocina-fogong.jpg" data-excerpt="El turno de la noche en el restaurante olía a cansancio, hasta que una visita sorpresa cambió todo...">
+  <img src="images/cocina-fogong.jpg" alt="El giro inesperado en la cocina" class="thumbnail">
+  <span class="story-meta">Reflexión</span>
+  <h3>El giro inesperado en la cocina</h3>
+  <p>El turno de la noche en el restaurante olía a cansancio, hasta que una visita sorpresa cambió todo...</p>
+</a>
+          </div>
+
+          <p id="filter-status" class="filter-status" aria-live="polite"></p>
+        </section>
+
+        <!-- ── SUSCRIPCIÓN ──────────────────────────────────────────── -->
+        <section class="content-width subscribe-section">
+          <div class="subscribe-box">
+            <h2 class="subscribe-heading">¿Quieres recibir las mejores historias en tu correo?</h2>
+            <form id="subscribe-form" class="subscribe-form" novalidate>
+              <label class="sr-only" for="email">Correo electrónico</label>
+              <input id="email" class="email-input" type="email" autocomplete="email"
+                     placeholder="Tu correo electrónico">
+              <button class="solid-button" type="submit">Suscribirme</button>
+            </form>
+            <p id="subscribe-message" class="form-message" aria-live="polite"></p>
+          </div>
+        </section>
+
+      </section>
+      <!-- Fin de #home-view -->
+
+
+      <!-- ══════════════════════════════════════════════════════════════
+           VISTAS LEGALES (internas, controladas por JavaScript)
+
+           Estas secciones se muestran/ocultan dentro de index.html.
+           Desde las páginas de historias, se accede con enlaces tipo:
+           index.html#privacy, index.html#terms, index.html#cookies
+           ══════════════════════════════════════════════════════════════ -->
+
+      <!-- ── Política de Privacidad ──────────────────────────────────── -->
+      <section id="legal-privacy-view" class="view" aria-label="Política de Privacidad">
+        <article class="legal-reading">
+          <button class="back-button" type="button" data-action="legal-back">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="m12 19-7-7 7-7"/><path d="M19 12H5"/>
+            </svg>
+            <span>Volver al inicio</span>
+          </button>
+
+          <h2 class="reading-title">Política de Privacidad</h2>
+
+          <!-- ← Edita el contenido legal según tu jurisdicción -->
+          <div class="legal-content">
+            <p>En este sitio web respetamos y protegemos la privacidad de nuestros usuarios. La presente Política de Privacidad establece los términos en que recopilamos, usamos y protegemos la información que es proporcionada por los usuarios al utilizar nuestro sitio web.</p>
+
+            <h3>Información que recabamos</h3>
+            <p>Nuestro sitio web puede recopilar información personal, por ejemplo: nombre o dirección de correo electrónico únicamente cuando el usuario decida proporcionarla de forma voluntaria a través de nuestros formularios de contacto o suscripción. Asimismo, se recopila información técnica no personal de forma automática (como dirección IP, tipo de navegador y páginas visitadas) mediante cookies técnicas y herramientas de análisis para mejorar la experiencia de navegación.</p>
+
+            <h3>Uso de la información</h3>
+            <p>La información recopilada es empleada para proporcionar el mejor servicio posible, mantener un registro de usuarios, optimizar nuestros contenidos y mostrar publicidad relevante a través de nuestros socios comerciales autorizados. No vendemos, cederemos ni distribuimos la información personal que es recopilada sin su consentimiento.</p>
+
+            <h3>Enlaces a terceros</h3>
+            <p>Este sitio web puede contener enlaces a otros sitios que pudieran ser de su interés. Una vez que usted haga clic en estos enlaces y abandone nuestra página, ya no tenemos control sobre al sitio al que es redirigido y por lo tanto no nos hacemos responsables de los términos o privacidad ni de la protección de sus datos en esos sitios terceros.</p>
+          </div>
+        </article>
+      </section>
+
+      <!-- ── Términos y Condiciones ──────────────────────────────────── -->
+      <section id="legal-terms-view" class="view" aria-label="Términos y Condiciones">
+        <article class="legal-reading">
+          <button class="back-button" type="button" data-action="legal-back">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="m12 19-7-7 7-7"/><path d="M19 12H5"/>
+            </svg>
+            <span>Volver al inicio</span>
+          </button>
+
+          <h2 class="reading-title">Términos y Condiciones</h2>
+
+          <div class="legal-content">
+            <h3>1. Términos</h3>
+            <p>Al acceder a este sitio web, usted acepta estar sujeto a estos Términos y Condiciones de uso, todas las leyes y regulaciones aplicables, y acepta que es responsable del cumplimiento de cualquier ley local aplicable. Si no está de acuerdo con alguno de estos términos, se le prohíbe usar o acceder a este sitio.</p>
+
+            <h3>2. Propiedad Intelectual</h3>
+            <p>Todo el contenido publicado en este portal, incluyendo textos, gráficos, logotipos, iconos e imágenes, es propiedad del sitio o de sus proveedores de contenido y está protegido por las leyes de propiedad intelectual internacionales. Queda estrictamente prohibida la reproducción total o parcial de los materiales sin autorización previa y por escrito.</p>
+
+            <h3>3. Uso del sitio</h3>
+            <p>El contenido de las páginas de este sitio web es para su información general y uso exclusivo. Está sujeto a cambios sin previo aviso. Este sitio utiliza sistemas publicitarios de terceros para monetizar el tráfico; el usuario reconoce y acepta que al hacer clic en determinados enlaces interactivos o botones de navegación, puede ser redirigido a plataformas publicitarias externas ajenas a nuestro control directo.</p>
+
+            <h3>4. Limitación de responsabilidad</h3>
+            <p>En ningún caso el propietario de este sitio web será responsable por daños directos, indirectos, incidentales o consecuentes que surjan del uso o de la imposibilidad de usar los materiales e historias presentadas en este portal.</p>
+          </div>
+        </article>
+      </section>
+
+      <!-- ── Política de Cookies ─────────────────────────────────────── -->
+      <section id="legal-cookies-view" class="view" aria-label="Política de Cookies">
+        <article class="legal-reading">
+          <button class="back-button" type="button" data-action="legal-back">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="m12 19-7-7 7-7"/><path d="M19 12H5"/>
+            </svg>
+            <span>Volver al inicio</span>
+          </button>
+
+          <h2 class="reading-title">Política de Cookies</h2>
+
+          <div class="legal-content">
+            <p>Este sitio web utiliza cookies para ayudarnos a mejorar su experiencia de navegación, personalizar contenidos, analizar el tráfico web y gestionar de forma adecuada la visualización de anuncios publicitarios adaptados a sus intereses.</p>
+
+            <h3>¿Qué son las cookies?</h3>
+            <p>Una cookie es un pequeño archivo de texto que se almacena en su navegador cuando visita casi cualquier página web. Su utilidad es que el sitio sea capaz de recordar su visita cuando vuelva a navegar por esta página.</p>
+
+            <h3>Tipos de cookies que utilizamos</h3>
+            <p><strong>Cookies técnicas y de funcionamiento:</strong> Necesarias para permitir la navegación correcta por el sitio web y el funcionamiento de las vistas interactivas.</p>
+            <p><strong>Cookies de análisis y publicidad:</strong> Utilizadas por nuestros socios publicitarios de terceros para gestionar las impresiones de anuncios, medir el rendimiento de las campañas y ofrecer contenidos comerciales relevantes para el usuario.</p>
+
+            <h3>Desactivación de cookies</h3>
+            <p>Usted puede permitir, bloquear o eliminar las cookies instaladas en su equipo mediante la configuración de las opciones del navegador instalado en su dispositivo. Tenga en cuenta que la desactivación de ciertas cookies puede afectar la funcionalidad óptima de algunas secciones de este sitio web.</p>
+          </div>
+        </article>
+      </section>
+
+    </main>
+
+    <!-- ================================================================
+         FOOTER
+         El footer es idéntico en todas las páginas.
+         En index.html usa <button> para las acciones internas (JS).
+         En las páginas de historias usa <a> con enlaces reales.
+         ================================================================ -->
+    <footer id="site-footer" class="site-footer">
+      <div class="footer-inner">
+        <div class="footer-grid">
+          <section>
+            <h3>Navegación</h3>
+            <button class="footer-link" type="button" data-action="home">Inicio</button>
+            <button class="footer-link" type="button" data-action="stories">Historias</button>
+          </section>
+          <section>
+            <h3>Legales</h3>
+            <button class="footer-link" type="button" data-action="privacy">Privacidad</button>
+            <button class="footer-link" type="button" data-action="terms">Términos</button>
+            <button class="footer-link" type="button" data-action="cookies">Cookies</button>
+          </section>
+          <section>
+            <h3>Contacto</h3>
+            <!-- ← Cambia este email por el real -->
+            <a class="footer-link" href="mailto:soporte@tudominio.com">soporte@tudominio.com</a>
+          </section>
+        </div>
+        <!-- ← Cambia el nombre y año del copyright -->
+        <p class="footer-bottom">© 2026 Relatos de la vida. Todos los derechos reservados.</p>
+        <p id="footer-message" class="context-message" aria-live="polite"></p>
+      </div>
+    </footer>
+
+    <!-- Botón volver arriba -->
+    <button id="top-button" class="top-button" type="button" aria-label="Volver arriba">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true">
+        <path d="m5 12 7-7 7 7"/><path d="M12 19V5"/>
+      </svg>
+    </button>
+
+  </div>
+
+  <!-- JavaScript de la página principal -->
+  <script src="js/main.js"></script>
+</body>
+</html>

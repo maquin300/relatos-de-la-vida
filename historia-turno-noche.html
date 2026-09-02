@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>El giro inesperado en la cocina — Relatos de la vida</title>
+  <meta name="description" content="Una noche de viernes cambió el destino de Mateo en la cocina de El Fogón de Don Mateo para siempre.">
+
+  <!-- Estilos -->
+  <link rel="stylesheet" href="css/styles.css">
+
+  <!-- Fuentes (Google Fonts) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Serif+Pro:ital,wght@0,400;0,600;0,700;1,400&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="app-shell">
+
+    <!-- HEADER FIJO -->
+    <header class="top-header">
+      <div class="header-inner">
+        <div class="header-brand">
+          <h1 class="site-name"><a href="index.html">Relatos de la vida</a></h1>
+        </div>
+        <button id="menu-toggle" class="menu-toggle" type="button" aria-controls="main-menu" aria-expanded="false">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true">
+            <line x1="4" x2="20" y1="6" y2="6"/>
+            <line x1="4" x2="20" y1="12" y2="12"/>
+            <line x1="4" x2="20" y1="18" y2="18"/>
+          </svg>
+          <span class="sr-only">Abrir menú</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- Menú desplegable -->
+    <nav id="main-menu" class="nav-panel" aria-label="Navegación principal">
+      <a href="index.html">Inicio</a>
+      <a href="index.html#stories-section">Historias</a>
+      <a href="index.html#site-footer">Contacto</a>
+    </nav>
+
+    <!-- CONTENIDO DE LA HISTORIA -->
+    <main>
+      <article class="story-reading">
+
+        <a href="index.html" class="back-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="m12 19-7-7 7-7"/><path d="M19 12H5"/>
+          </svg>
+          <span>Volver a Inicio</span>
+        </a>
+
+        <span class="category-chip">Reflexión</span>
+
+        <h2 class="reading-title">El giro inesperado en la cocina</h2>
+
+        <img src="images/cocina-fogong.jpg" alt="El giro inesperado en la cocina" class="reading-image">
+
+        <!-- CUERPO VISIBLE (ANTES DEL MURO) -->
+        <div class="reading-body">
+          <p>El turno de la noche en El Fogón de Don Mateo siempre olía a aceite quemado, cebolla marchita y al cansancio acumulado de las doce horas previas. Mateo, el encargado de la cocina, llevaba cinco años soportando los gritos y los insultos del chef principal, quien lo culpaba de cada plato devuelto o cada error en las comandas.</p>
+
+          <p>Una noche de viernes, con el local a máxima capacidad, el dueño del restaurante hizo una visita sorpresa que no estaba en los planes de nadie. Don Humberto, un hombre de presencia imponente, mirada fría y cabello completamente blanco, recorrió las instalaciones revisando cada detalle con rigor implacable.</p>
+
+          <p>En medio del servicio, un camarero tropezó y dejó caer una bandeja llena de platos frente a la mesa principal. El estrépito paralizó el comedor antes de que ocurriera lo peor.</p>
+        </div>
+
+        <!-- CONTENIDO BLOQUEADO (.locked-content) -->
+        <div id="locked-content" class="locked-content">
+
+          <div class="reading-body">
+            <p>El chef principal, buscando un chivo expiatorio para salvar su propio pellejo ante el dueño, corrió hacia la cocina, agarró a Mateo del brazo y lo empujó frente a Don Humberto. —¡Es culpa de este inútil, don Humberto! —gritó el cocinero fuera de sí, escupiendo rabia—.</p>
+
+            <p>Mateo bajó la mirada, conteniendo las lágrimas de frustración, con las manos quemadas y marcadas por el trabajo duro. Esperó el golpe definitivo, el despido o los gritos del propietario. Pero Don Humberto no dijo nada. Se quedó helado, con los ojos fijos en el rostro de Mateo bajo la luz fluorescente de la cocina.</p>
+
+            <p>—Esa cicatriz... y esa llave... —susurró Don Humberto con la voz quebrada—. Es el hijo que había perdido en un mercado abarrotado veintidós años atrás, a quien había buscado incansablemente durante media vida, mientras el destino lo ocultaba bajo su propio techo.</p>
+          </div>
+
+          <!-- HISTORIAS RECOMENDADAS (DINÁMICAS) -->
+          <section class="content-width section-spacing section-rule recommended-section">
+            <div class="section-heading">
+              <h2>Historias recomendadas</h2>
+            </div>
+            <div id="recommended-grid" class="story-grid recommended-grid"></div>
+          </section>
+
+        </div>
+      </article>
+    </main>
+
+    <!-- BARRA FIJA INFERIOR -->
+    <div id="sticky-paywall-bar" class="sticky-paywall-bar">
+      <div class="sticky-paywall-inner">
+        <p class="paywall-notice">El resto de este artículo está bloqueado. Ve un breve anuncio para desbloquear y continuar leyendo.</p>
+        <button id="unlock-button" class="solid-button unlock-button" type="button">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" width="16" height="16">
+            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+            <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+          </svg>
+          <span>Desbloquear</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer id="site-footer" class="site-footer">
+      <div class="footer-inner">
+        <div class="footer-grid">
+          <section>
+            <h3>Navegación</h3>
+            <a class="footer-link" href="index.html">Inicio</a>
+            <a class="footer-link" href="index.html#stories-section">Historias</a>
+          </section>
+          <section>
+            <h3>Legales</h3>
+            <a class="footer-link" href="index.html#privacy">Privacidad</a>
+            <a class="footer-link" href="index.html#terms">Términos</a>
+            <a class="footer-link" href="index.html#cookies">Cookies</a>
+          </section>
+          <section>
+            <h3>Contacto</h3>
+            <a class="footer-link" href="mailto:soporte@tudominio.com">soporte@tudominio.com</a>
+          </section>
+        </div>
+        <p class="footer-bottom">© 2026 Relatos de la vida. Todos los derechos reservados.</p>
+      </div>
+    </footer>
+
+    <button id="top-button" class="top-button" type="button" aria-label="Volver arriba">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true">
+        <path d="m5 12 7-7 7 7"/><path d="M12 19V5"/>
+      </svg>
+    </button>
+
+  </div>
+
+  <script src="js/story.js"></script>
+</body>
+</html>

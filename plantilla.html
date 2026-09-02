@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- ═══════════════════════════════════════════════════════════════════════
+       ★ PLANTILLA MADRE — INSTRUCCIONES DE USO ★
+
+       Para crear una nueva historia, sigue estos 3 pasos:
+
+       PASO 1: Duplica este archivo con un nombre descriptivo.
+               Ejemplo: historia-el-espejo-roto.html
+
+       PASO 2: Busca todos los comentarios "← [CAMBIAR]" en este archivo
+               y reemplaza los textos de placeholder por tu contenido real.
+               Los campos a cambiar son:
+               - <title> (pestaña del navegador)
+               - <meta description> (SEO)
+               - Categoría (chip visible)
+               - Título de la historia
+               - Imagen ilustrativa
+               - Párrafos visibles (antes del muro de pago)
+               - Texto difuminado (dentro del blur)
+               - Párrafos ocultos (continuación tras el CTA)
+
+       PASO 3: Añade una tarjeta en el grid de index.html que enlace a
+               tu nuevo archivo. Copia este bloque y pégalo dentro de
+               <div id="story-grid"> en index.html:
+
+               <a class="story-card" href="historia-el-espejo-roto.html" data-category="Misterio" data-image="images/el-espejo-roto.jpg" data-excerpt="Extracto de la historia...">
+                 <img src="images/el-espejo-roto.jpg" alt="Título de tu historia" class="thumbnail">
+                 <span class="story-meta">Misterio</span>
+                 <h3>Título de tu historia</h3>
+                 <p>Extracto breve que engancha al lector...</p>
+               </a>
+
+       ¡Listo! Tu nueva historia ya es accesible desde la portada.
+       ═══════════════════════════════════════════════════════════════════════ -->
+
+  <!-- ← [CAMBIAR] Título de la página (aparece en la pestaña del navegador) -->
+  <title>Título de la Historia — Relatos de la vida</title>
+  <!-- ← [CAMBIAR] Descripción para SEO y redes sociales -->
+  <meta name="description" content="Extracto breve de la historia para SEO y redes sociales.">
+
+  <!-- Estilos -->
+  <link rel="stylesheet" href="css/styles.css">
+
+  <!-- Fuentes (Google Fonts) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Serif+Pro:ital,wght@0,400;0,600;0,700;1,400&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="app-shell">
+
+    <!-- ================================================================
+         HEADER FIJO (idéntico en todas las páginas)
+         ================================================================ -->
+    <header class="top-header">
+      <div class="header-inner">
+        <div class="header-brand">
+          <h1 class="site-name"><a href="index.html">Relatos de la vida</a></h1>
+        </div>
+        <button id="menu-toggle" class="menu-toggle" type="button"
+                aria-controls="main-menu" aria-expanded="false">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true">
+            <line x1="4" x2="20" y1="6" y2="6"/>
+            <line x1="4" x2="20" y1="12" y2="12"/>
+            <line x1="4" x2="20" y1="18" y2="18"/>
+          </svg>
+          <span class="sr-only">Abrir menú</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- Menú desplegable — usa <a> porque enlaza a páginas externas -->
+    <nav id="main-menu" class="nav-panel" aria-label="Navegación principal">
+      <a href="index.html">Inicio</a>
+      <a href="index.html#stories-section">Historias</a>
+      <a href="index.html#site-footer">Contacto</a>
+    </nav>
+
+    <!-- ================================================================
+         CONTENIDO DE LA HISTORIA
+         ================================================================ -->
+    <main>
+      <article class="story-reading">
+
+        <!-- Enlace para volver al inicio -->
+        <a href="index.html" class="back-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="m12 19-7-7 7-7"/><path d="M19 12H5"/>
+          </svg>
+          <span>Volver a Inicio</span>
+        </a>
+
+        <!-- ← [CAMBIAR] Categoría de la historia -->
+        <span class="category-chip">Categoría</span>
+
+        <!-- ← [CAMBIAR] Título de la historia -->
+        <h2 class="reading-title">Título de la Historia</h2>
+
+        <!-- ← [CAMBIAR] Imagen principal de la historia (Ruta: images/nombre-imagen.jpg) -->
+        <img src="images/nombre-imagen.jpg" alt="Título de la historia" class="reading-image">
+
+        <!-- ══════════════════════════════════════════════════════════════
+             CUERPO DE LA HISTORIA
+
+             Escribe los párrafos visibles aquí. Estos son los que el
+             lector verá ANTES del muro de pago difuminado. Escribe
+             lo suficiente para enganchar al lector (2-4 párrafos).
+             ══════════════════════════════════════════════════════════════ -->
+        <div class="reading-body">
+
+          <!-- ← [CAMBIAR] Párrafos visibles (añade tantos <p> como necesites) -->
+          <p>Primer párrafo de la historia. Este texto es completamente visible para el lector. Debe ser lo suficientemente atractivo para generar interés en seguir leyendo.</p>
+
+          <p>Segundo párrafo de la historia. Desarrolla la tensión narrativa. El lector debe querer saber qué pasa después.</p>
+
+          <p>Tercer párrafo. Este es el último párrafo visible antes del muro de pago. Termina con un gancho que haga irresistible la necesidad de continuar.</p>
+
+        </div>
+
+        <!-- ══════════════════════════════════════════════════════════════
+             CONTENIDO BLOQUEADO POR DEFECTO (.locked-content)
+
+             Engloba la continuación de la historia Y el bloque de recomendadas.
+             Tiene desenfoque total por defecto (filter: blur(6px); user-select: none; pointer-events: none;).
+             Se desbloquea al hacer clic en 'Desbloquear' en la barra fija inferior.
+             ══════════════════════════════════════════════════════════════ -->
+        <div id="locked-content" class="locked-content">
+
+          <div class="reading-body">
+            <!-- ← [CAMBIAR] Párrafos de la continuación de la historia (bloqueados) -->
+            <p>Continuación de la historia. Este contenido permanece desenfocado e inhabilitado hasta que el usuario pulse 'Desbloquear'.</p>
+            <p>Puedes escribir aquí la historia completa. El lector verá el texto borroso y no podrá seleccionarlo ni interactuar con él.</p>
+          </div>
+
+          <!-- BLOQUE DE HISTORIAS RECOMENDADAS (CARGADAS DINÁMICAMENTE POR JS) -->
+          <section class="content-width section-spacing section-rule recommended-section">
+            <div class="section-heading">
+              <h2>Historias recomendadas</h2>
+            </div>
+            <!-- El script js/story.js inyecta aquí 2 historias aleatorias del sitio -->
+            <div id="recommended-grid" class="story-grid recommended-grid"></div>
+          </section>
+
+        </div>
+      </article>
+    </main>
+
+    <!-- ══════════════════════════════════════════════════════════════════
+         BARRA FIJA INFERIOR DE DESBLOQUEO (STICKY UNLOCK BAR)
+
+         Fija permanentemente en la parte inferior (position: fixed; bottom: 0; left: 0; z-index: 1000;).
+         Al pulsar 'Desbloquear', abre el Smartlink de Adsterra en nueva pestaña y quita el desenfoque.
+         ══════════════════════════════════════════════════════════════════ -->
+    <div id="sticky-paywall-bar" class="sticky-paywall-bar">
+      <div class="sticky-paywall-inner">
+        <p class="paywall-notice">El resto de este artículo está bloqueado. Ve un breve anuncio para desbloquear y continuar leyendo.</p>
+        <button id="unlock-button" class="solid-button unlock-button" type="button">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" width="16" height="16">
+            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+            <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+          </svg>
+          <span>Desbloquear</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- ================================================================
+         FOOTER (idéntico en todas las páginas)
+         Usa <a> con enlaces reales hacia index.html
+         ================================================================ -->
+    <footer id="site-footer" class="site-footer">
+      <div class="footer-inner">
+        <div class="footer-grid">
+          <section>
+            <h3>Navegación</h3>
+            <a class="footer-link" href="index.html">Inicio</a>
+            <a class="footer-link" href="index.html#stories-section">Historias</a>
+          </section>
+          <section>
+            <h3>Legales</h3>
+            <a class="footer-link" href="index.html#privacy">Privacidad</a>
+            <a class="footer-link" href="index.html#terms">Términos</a>
+            <a class="footer-link" href="index.html#cookies">Cookies</a>
+          </section>
+          <section>
+            <h3>Contacto</h3>
+            <a class="footer-link" href="mailto:soporte@tudominio.com">soporte@tudominio.com</a>
+          </section>
+        </div>
+        <p class="footer-bottom">© 2026 Relatos de la vida. Todos los derechos reservados.</p>
+      </div>
+    </footer>
+
+    <!-- Botón volver arriba -->
+    <button id="top-button" class="top-button" type="button" aria-label="Volver arriba">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true">
+        <path d="m5 12 7-7 7 7"/><path d="M12 19V5"/>
+      </svg>
+    </button>
+
+  </div>
+
+  <!-- JavaScript para páginas de historias -->
+  <script src="js/story.js"></script>
+</body>
+</html>

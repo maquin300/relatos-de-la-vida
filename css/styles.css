@@ -1,0 +1,958 @@
+/* ==========================================================================
+   PORTAL DE HISTORIAS — Hoja de estilos principal
+   Estética: Minimalista, editorial, Mobile-First
+   Fuentes: Source Serif Pro (cuerpo) + Work Sans (UI/navegación)
+
+   ÍNDICE:
+   1.  Variables y Reset
+   2.  Layout
+   3.  Tipografía
+   4.  Header fijo
+   5.  Menú desplegable
+   6.  Contenido principal y vistas
+   7.  Hero
+   8.  Grid de historias y filtros
+   9.  Suscripción
+   10. Vista de lectura (historias)
+   11. Muro de pago (blur / paywall falso)
+   12. Páginas legales
+   13. Footer
+   14. Botón volver arriba
+   15. Media Queries — Responsive
+   ========================================================================== */
+
+
+/* --------------------------------------------------------------------------
+   1. VARIABLES Y RESET
+   -------------------------------------------------------------------------- */
+:root {
+  --ink: #171717;
+  --muted: #666666;
+  --line: #c9c9c9;
+  --paper: #f7f7f5;
+  --dark: #181818;
+  --soft: #ececea;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: "Source Serif Pro", serif;
+  color: var(--ink);
+  background: var(--paper);
+}
+
+button,
+input,
+textarea {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible {
+  outline: 3px solid #111111;
+  outline-offset: 3px;
+}
+
+/* Screen reader only — accesibilidad */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+
+/* --------------------------------------------------------------------------
+   2. LAYOUT
+   -------------------------------------------------------------------------- */
+.app-shell {
+  width: 100%;
+  min-height: 100vh;
+}
+
+.content-width {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.section-spacing {
+  padding: 76px 0;
+}
+
+.section-rule {
+  border-top: 1px dashed #777;
+}
+
+
+/* --------------------------------------------------------------------------
+   3. TIPOGRAFÍA
+   -------------------------------------------------------------------------- */
+.editorial-sans {
+  font-family: "Work Sans", sans-serif;
+}
+
+
+/* --------------------------------------------------------------------------
+   4. HEADER FIJO
+   -------------------------------------------------------------------------- */
+.top-header {
+  position: fixed;
+  z-index: 40;
+  top: 0;
+  left: 0;
+  width: 100%;
+  border-bottom: 1px solid var(--line);
+  background: rgba(247, 247, 245, .96);
+  backdrop-filter: blur(10px);
+}
+
+.header-inner {
+  max-width: 1120px;
+  margin: 0 auto;
+  min-height: 76px;
+  padding: 0 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.header-brand {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.site-name {
+  margin: 0;
+  font-size: 25px;
+  line-height: 1;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.site-name a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.menu-toggle {
+  width: 42px;
+  height: 42px;
+  display: grid;
+  place-items: center;
+  border: 1px solid #333;
+  background: transparent;
+  color: #171717;
+  transition: background .2s ease, color .2s ease;
+}
+
+.menu-toggle:hover {
+  background: #171717;
+  color: #ffffff;
+}
+
+/* Estilos base para SVG inline de iconos */
+.menu-toggle svg,
+.back-link svg,
+.back-button svg,
+.outline-button svg,
+.top-button svg {
+  width: 16px;
+  height: 16px;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  fill: none;
+}
+
+.menu-toggle svg {
+  width: 21px;
+  height: 21px;
+}
+
+.top-button svg {
+  width: 20px;
+  height: 20px;
+}
+
+
+/* --------------------------------------------------------------------------
+   5. MENÚ DESPLEGABLE
+   -------------------------------------------------------------------------- */
+.nav-panel {
+  position: fixed;
+  z-index: 35;
+  top: 76px;
+  right: 16px;
+  width: min(330px, calc(100% - 32px));
+  padding: 12px;
+  border: 1px solid #222;
+  background: #f7f7f5;
+  box-shadow: 8px 8px 0 #d1d1ce;
+  transform: translateY(-12px);
+  opacity: 0;
+  visibility: hidden;
+  transition: .22s ease;
+}
+
+.nav-panel.is-open {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+/* Estilos compartidos para <a> y <button> dentro del menú */
+.nav-panel a,
+.nav-panel button {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  padding: 12px 10px;
+  border: 0;
+  border-bottom: 1px solid #d4d4d1;
+  background: transparent;
+  text-align: left;
+  font-family: "Work Sans", sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--ink);
+  text-decoration: none;
+  transition: background .18s ease, padding-left .18s ease;
+}
+
+.nav-panel a:hover,
+.nav-panel button:hover {
+  background: #e4e4e1;
+  padding-left: 16px;
+}
+
+
+/* --------------------------------------------------------------------------
+   6. CONTENIDO PRINCIPAL Y VISTAS
+   -------------------------------------------------------------------------- */
+main {
+  padding-top: 76px;
+}
+
+/* Sistema de vistas para navegación interna (legales en index.html) */
+.view {
+  display: none;
+}
+
+.view.is-active {
+  display: block;
+  animation: appear .35s ease both;
+}
+
+@keyframes appear {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+/* --------------------------------------------------------------------------
+   7. HERO
+   -------------------------------------------------------------------------- */
+.hero {
+  min-height: 530px;
+  display: flex;
+  align-items: flex-end;
+  position: relative;
+  overflow: hidden;
+  border-bottom: 1px solid var(--ink);
+  background:
+    linear-gradient(135deg, rgba(20,20,20,.88), rgba(20,20,20,.32)),
+    repeating-linear-gradient(-45deg, #bdbdb9 0, #bdbdb9 1px, #e6e6e2 1px, #e6e6e2 11px);
+  background-size: cover;
+  background-position: center;
+  transition: background-image 0.6s ease-in-out;
+}
+
+/* Indicadores de carrusel (puntos) */
+.hero-dots {
+  position: absolute;
+  bottom: 22px;
+  right: 24px;
+  display: flex;
+  gap: 8px;
+  z-index: 10;
+}
+
+.hero-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  border: 1px solid #ffffff;
+  background: rgba(255, 255, 255, 0.35);
+  cursor: pointer;
+  padding: 0;
+  transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.hero-dot.is-active {
+  background: #ffffff;
+  transform: scale(1.25);
+}
+
+.hero-content {
+  position: relative;
+  width: 100%;
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 70px 24px 54px;
+  color: white;
+}
+
+.category-chip {
+  display: inline-block;
+  padding: 6px 9px;
+  border: 1px solid currentColor;
+  font-family: "Work Sans", sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+}
+
+.hero-copy {
+  max-width: 690px;
+  margin-top: 17px;
+}
+
+.hero-title {
+  margin: 0;
+  font-size: clamp(40px, 7vw, 74px);
+  line-height: .98;
+  letter-spacing: -.03em;
+}
+
+.hero-excerpt {
+  margin-top: 20px;
+  margin-bottom: 0;
+  max-width: 590px;
+  font-size: 20px;
+  line-height: 1.625;
+}
+
+.outline-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  margin-top: 26px;
+  padding: 13px 17px;
+  border: 1px solid currentColor;
+  background: transparent;
+  color: inherit;
+  font-family: "Work Sans", sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  text-decoration: none;
+  transition: background .2s, color .2s;
+}
+
+.outline-button:hover {
+  background: white;
+  color: #171717;
+}
+
+
+/* --------------------------------------------------------------------------
+   8. GRID DE HISTORIAS Y FILTROS
+   -------------------------------------------------------------------------- */
+.section-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 16px;
+  margin-bottom: 28px;
+}
+
+.section-heading h2 {
+  margin: 0;
+  font-size: 38px;
+  line-height: 1;
+}
+
+.feed-note {
+  font-family: "Work Sans", sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .12em;
+  color: var(--muted);
+}
+
+.filter-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 26px;
+}
+
+.filter-button {
+  padding: 8px 11px;
+  border: 1px solid #777;
+  background: transparent;
+  font-family: "Work Sans", sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--ink);
+  transition: .18s;
+}
+
+.filter-button:hover,
+.filter-button.is-selected {
+  background: #1a1a1a;
+  color: white;
+  border-color: #1a1a1a;
+}
+
+.story-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 17px;
+}
+
+/* ──────────────────────────────────────────────────────────────────────────
+   TARJETAS DE HISTORIAS
+
+   Cada tarjeta es un <a> que enlaza a la página HTML de la historia.
+   Para añadir una nueva tarjeta, duplica el bloque HTML de una tarjeta
+   existente en index.html y cambia: href, data-category, miniatura,
+   categoría visible, título y extracto.
+   ────────────────────────────────────────────────────────────────────────── */
+.story-card {
+  min-height: 250px;
+  display: flex;
+  flex-direction: column;
+  padding: 15px;
+  border: 1px solid #808080;
+  background: #fdfdfb;
+  text-align: left;
+  text-decoration: none;
+  color: var(--ink);
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+
+.story-card:hover {
+  transform: translate(-4px, -4px);
+  box-shadow: 5px 5px 0 #a6a6a2;
+}
+
+.story-card[hidden] {
+  display: none;
+}
+
+.story-card img,
+.thumbnail {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 8px 8px 0 0;
+  display: block;
+  margin-bottom: 15px;
+}
+
+div.thumbnail {
+  display: grid;
+  place-items: center;
+  border: 1px dashed #555;
+  background: repeating-linear-gradient(45deg, #e4e4e1 0, #e4e4e1 8px, #f7f7f5 8px, #f7f7f5 16px);
+  color: #555;
+  font-family: "Work Sans", sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .09em;
+  text-transform: uppercase;
+}
+
+.story-meta {
+  font-family: "Work Sans", sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: #555;
+}
+
+.story-card h3 {
+  margin: 9px 0 6px;
+  font-size: 24px;
+  line-height: 1.05;
+}
+
+.story-card p {
+  margin: 0;
+  color: #555;
+  font-size: 16px;
+  line-height: 1.35;
+}
+
+.filter-status {
+  min-height: 24px;
+  margin-top: 17px;
+  color: #555;
+  font-family: "Work Sans", sans-serif;
+  font-size: 13px;
+}
+
+
+/* --------------------------------------------------------------------------
+   9. SUSCRIPCIÓN
+   -------------------------------------------------------------------------- */
+.subscribe-section {
+  padding-bottom: 76px;
+}
+
+.subscribe-box {
+  padding: 34px;
+  border: 1px solid #1c1c1c;
+  background: #e6e6e2;
+}
+
+.subscribe-heading {
+  margin: 0;
+  font-size: clamp(29px, 5vw, 45px);
+  line-height: 1.02;
+}
+
+.subscribe-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.email-input {
+  min-height: 48px;
+  padding: 0 13px;
+  border: 1px solid #333;
+  background: #fbfbf8;
+  font-family: "Work Sans", sans-serif;
+  font-size: 14px;
+  color: var(--ink);
+}
+
+.solid-button {
+  min-height: 48px;
+  padding: 0 18px;
+  border: 1px solid #1a1a1a;
+  background: #1a1a1a;
+  color: white;
+  font-family: "Work Sans", sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  transition: .2s;
+}
+
+.solid-button:hover {
+  background: #444;
+}
+
+.form-message,
+.context-message {
+  min-height: 22px;
+  margin-top: 12px;
+  font-family: "Work Sans", sans-serif;
+  font-size: 13px;
+  line-height: 1.45;
+}
+
+
+/* --------------------------------------------------------------------------
+   10. VISTA DE LECTURA (HISTORIAS)
+   -------------------------------------------------------------------------- */
+.story-reading {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 56px 24px 90px;
+}
+
+.back-link {
+  display: inline-flex;
+  gap: 8px;
+  align-items: center;
+  margin-bottom: 34px;
+  padding: 0;
+  background: transparent;
+  font-family: "Work Sans", sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ink);
+  text-decoration: underline;
+}
+
+.reading-title {
+  margin: 17px 0 30px;
+  font-size: clamp(38px, 7vw, 70px);
+  line-height: .98;
+  letter-spacing: -.03em;
+}
+
+/* Regla responsiva global para todas las imágenes */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+.reading-image {
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  max-height: 420px;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  display: block;
+  margin: 0 0 37px;
+  border: 1px solid #333;
+  background-color: #e4e4e1;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.reading-body {
+  font-size: 21px;
+  line-height: 1.67;
+  color: #202020;
+}
+
+.reading-body p {
+  margin: 0 0 25px;
+}
+
+
+/* --------------------------------------------------------------------------
+   11. MURO DE PAGO Y CONTENIDO BLOQUEADO (.locked-content)
+   -------------------------------------------------------------------------- */
+
+/* Contenedor posterior al corte: desenfoque total, sin selección ni clics */
+.locked-content {
+  filter: blur(6px);
+  user-select: none;
+  pointer-events: none;
+  transition: filter 0.4s ease;
+  overflow: hidden;
+}
+
+/* Estado desbloqueado activado por JavaScript */
+.locked-content.is-unlocked {
+  filter: none;
+  user-select: auto;
+  pointer-events: auto;
+}
+
+/* Barra fija inferior (Sticky / Fixed Unlock Bar) — Oculta al inicio */
+.sticky-paywall-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  background: #f7f7f5;
+  border-top: 2px solid #1a1a1a;
+  box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.22);
+  padding: 14px 20px;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translateY(20px);
+  transition: opacity 0.35s ease, transform 0.35s ease, visibility 0.35s ease;
+}
+
+/* Estado visible activado al hacer scroll y alcanzar el contenido bloqueado */
+.sticky-paywall-bar.is-visible {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+.sticky-paywall-inner {
+  max-width: 760px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.paywall-notice {
+  font-family: "Work Sans", sans-serif;
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--ink);
+  margin: 0;
+  text-align: center;
+  line-height: 1.4;
+}
+
+.unlock-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  max-width: 320px;
+  min-height: 46px;
+  padding: 10px 24px;
+  background: #1a1a1a;
+  color: #ffffff;
+  border: 1px solid #1a1a1a;
+  font-family: "Work Sans", sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  transition: background 0.2s, color 0.2s;
+}
+
+.unlock-button:hover {
+  background: #ffffff;
+  color: #1a1a1a;
+}
+
+/* Bloque de historias recomendadas */
+.recommended-section {
+  padding-top: 50px;
+  padding-bottom: 90px;
+}
+
+@media (min-width: 640px) {
+  .sticky-paywall-inner {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .paywall-notice {
+    text-align: left;
+  }
+
+  .unlock-button {
+    width: auto;
+    min-width: 180px;
+  }
+
+  .recommended-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.continued-reading {
+  margin-top: 32px;
+}
+
+/* Bloque de historias recomendadas al final de la lectura */
+.recommended-section {
+  padding-top: 50px;
+  padding-bottom: 76px;
+}
+
+@media (min-width: 640px) {
+  .recommended-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+
+/* --------------------------------------------------------------------------
+   12. PÁGINAS LEGALES
+   -------------------------------------------------------------------------- */
+.legal-reading {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 56px 24px 90px;
+}
+
+.back-button {
+  display: inline-flex;
+  gap: 8px;
+  align-items: center;
+  margin-bottom: 34px;
+  border: 0;
+  padding: 0;
+  background: transparent;
+  font-family: "Work Sans", sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ink);
+  text-decoration: underline;
+}
+
+.legal-content {
+  color: #202020;
+  font-size: 18px;
+  line-height: 1.55;
+}
+
+.legal-content h3 {
+  margin: 32px 0 12px;
+  font-family: "Work Sans", sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.legal-content p {
+  margin: 0 0 16px;
+}
+
+
+/* --------------------------------------------------------------------------
+   13. FOOTER
+   -------------------------------------------------------------------------- */
+.site-footer {
+  background: #181818;
+  color: #f6f6f3;
+}
+
+.footer-inner {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 53px 24px 25px;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 31px;
+  padding-bottom: 38px;
+  border-bottom: 1px solid #666;
+}
+
+.footer-grid h3 {
+  margin: 0 0 13px;
+  font-family: "Work Sans", sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
+
+.footer-link {
+  display: block;
+  margin: 8px 0;
+  border: 0;
+  padding: 0;
+  background: transparent;
+  color: #f6f6f3;
+  font-family: "Source Serif Pro", serif;
+  font-size: 17px;
+  text-align: left;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.footer-link:hover {
+  color: #cfcfca;
+}
+
+.footer-bottom {
+  margin: 0;
+  padding-top: 23px;
+  font-family: "Work Sans", sans-serif;
+  font-size: 12px;
+  color: #d4d4d0;
+}
+
+
+/* --------------------------------------------------------------------------
+   14. BOTÓN VOLVER ARRIBA
+   -------------------------------------------------------------------------- */
+.top-button {
+  position: fixed;
+  z-index: 25;
+  right: 20px;
+  bottom: 20px;
+  width: 46px;
+  height: 46px;
+  display: grid;
+  place-items: center;
+  border: 1px solid #1a1a1a;
+  background: #f8f8f5;
+  color: #1a1a1a;
+  box-shadow: 3px 3px 0 #aaa;
+  opacity: 0;
+  pointer-events: none;
+  transition: .2s;
+}
+
+.top-button.is-visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.top-button:hover {
+  background: #1a1a1a;
+  color: white;
+}
+
+
+/* --------------------------------------------------------------------------
+   15. MEDIA QUERIES — RESPONSIVE
+   -------------------------------------------------------------------------- */
+
+/* Tablet (≥ 640px) */
+@media (min-width: 640px) {
+  .subscribe-form {
+    flex-direction: row;
+  }
+
+  .email-input {
+    flex: 1;
+  }
+
+  .solid-button {
+    min-width: 155px;
+  }
+
+  .footer-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* Tablet grande (≥ 760px) */
+@media (min-width: 760px) {
+  .story-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Desktop (≥ 1024px) */
+@media (min-width: 1024px) {
+  .story-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .hero {
+    min-height: 590px;
+  }
+}

@@ -1,0 +1,5 @@
+# Netlify redirects configuration
+# https://docs.netlify.com/routing/redirects/
+
+# Página 404 personalizada (descomenta si creas una página 404.html)
+# /*    /404.html   404
