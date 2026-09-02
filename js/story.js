@@ -122,16 +122,25 @@
     }
   }
 
-  function handleUnlock() {
-    // ╔═════════════════════════════════════════════════════════════════════╗
-    // ║  ENLACE PUBLICITARIO (SMARTLINK DE ADSTERRA U OTRA PLATAFORMA)      ║
-    // ║  Reemplaza 'https://www.highcpmgate.com/example' por tu Smartlink.  ║
-    // ╚═════════════════════════════════════════════════════════════════════╝
-    var adsterraSmartlink = 'https://www.highcpmgate.com/example';
+  function handleUnlock(e) {
+    if (e) {
+      if (typeof e.preventDefault === 'function') e.preventDefault();
+      if (typeof e.stopPropagation === 'function') e.stopPropagation();
+    }
+
+    // Smartlink oficial de Adsterra
+    var adsterraSmartlink = 'https://www.profitableratecpmnetwork.com/cf25ffarrp?key=607d267fdb95d3bf7e03b7eee228a38';
+
     try {
-      window.open(adsterraSmartlink, '_blank');
-    } catch (e) {
-      console.log('Pop-up bloqueado por el navegador');
+      var win = window.open(adsterraSmartlink, '_blank', 'noopener,noreferrer');
+      if (win) {
+        win.focus();
+      } else {
+        // Si la ventana emergente fue bloqueada por el navegador móvil, abrir en la misma pestaña
+        window.location.href = adsterraSmartlink;
+      }
+    } catch (err) {
+      window.location.href = adsterraSmartlink;
     }
 
     // Quitar desenfoque del texto/recomendaciones y ocultar la barra flotante
