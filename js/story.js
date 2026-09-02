@@ -122,28 +122,9 @@
     }
   }
 
-  function handleUnlock(e) {
-    if (e) {
-      if (typeof e.preventDefault === 'function') e.preventDefault();
-      if (typeof e.stopPropagation === 'function') e.stopPropagation();
-    }
-
-    // Smartlink oficial de Adsterra
+  function handleUnlock() {
     var adsterraSmartlink = 'https://www.profitableratecpmnetwork.com/cf25ffarrp?key=607d267fdb95d3bf7e03b7eee228a38';
-
-    try {
-      var win = window.open(adsterraSmartlink, '_blank', 'noopener,noreferrer');
-      if (win) {
-        win.focus();
-      } else {
-        // Si la ventana emergente fue bloqueada por el navegador móvil, abrir en la misma pestaña
-        window.location.href = adsterraSmartlink;
-      }
-    } catch (err) {
-      window.location.href = adsterraSmartlink;
-    }
-
-    // Quitar desenfoque del texto/recomendaciones y ocultar la barra flotante
+    window.open(adsterraSmartlink, '_blank');
     desbloquearContenido();
   }
 
