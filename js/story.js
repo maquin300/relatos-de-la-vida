@@ -38,30 +38,12 @@
   /* ══════════════════════════════════════════════════════════════════════════
      BOTÓN CTA — DESBLOQUEO DE CONTENIDO
 
-     La función handleUnlock() se ejecuta cuando el usuario hace clic en
-     el botón "Continuar leyendo la historia".
+     El botón #unlock-button es un enlace HTML nativo (<a href="..." target="_blank">)
+     que abre el Smartlink directamente en una pestaña nueva sin utilizar
+     window.open (evitando bloqueos de popup o errores 403).
 
-     ─── INSTRUCCIONES PARA CONECTAR CON PUBLICIDAD ───
-
-     Modifica el cuerpo de esta función según tu plataforma elegida:
-
-     OPCIÓN A — Redirigir a un enlace publicitario (Content Locker):
-       window.location.href = 'https://tu-red-publicitaria.com/oferta?id=123';
-
-     OPCIÓN B — Abrir enlace en nueva pestaña y luego desbloquear:
-       window.open('https://tu-red-publicitaria.com/oferta', '_blank');
-       desbloquearContenido();  // Llama a la función de abajo
-
-     OPCIÓN C — Cargar un script de monetización dinámicamente:
-       var script = document.createElement('script');
-       script.src = 'https://cdn.monetizacion.com/locker.js';
-       script.onload = function() { initLocker(); };
-       document.head.appendChild(script);
-
-     OPCIÓN D — Mostrar un interstitial / popup antes de desbloquear:
-       mostrarInterstitial(function onComplete() {
-         desbloquearContenido();
-       });
+     La función handleUnlock() simplemente desbloquea el contenido difuminado
+     en la pestaña actual cuando el usuario hace clic.
      ══════════════════════════════════════════════════════════════════════════ */
 
   /* ── Visibilidad progresiva de la barra fija (IntersectionObserver) ──── */
@@ -123,8 +105,9 @@
   }
 
   function handleUnlock() {
-    var adsterraSmartlink = 'https://www.profitableratecpmnetwork.com/cf25ffarrp?key=607d267fdb95d3bf7e03b7eee228a38';
-    window.open(adsterraSmartlink, '_blank');
+    // Al ser un enlace HTML nativo (<a href="..." target="_blank">), el navegador
+    // abre el Smartlink de Adsterra de forma 100% nativa y sin bloqueos.
+    // JavaScript solo se encarga de desbloquear el contenido en esta pestaña.
     desbloquearContenido();
   }
 

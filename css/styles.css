@@ -733,6 +733,8 @@ img {
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.05em;
+  text-decoration: none;
+  cursor: pointer;
   transition: background 0.2s, color 0.2s;
 }
 
